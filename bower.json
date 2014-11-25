@@ -2,5 +2,7 @@
   "name": "jearch",
   "version": "0.0.0",
   "dependencies": {
+    "select2": "~3.5.2",
+    "jquery": "~2.1.1"
   }
 }

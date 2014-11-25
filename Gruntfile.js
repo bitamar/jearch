@@ -9,6 +9,7 @@
 //   fonts: fonts
 
 module.exports = function (grunt) {
+  grunt.loadNpmTasks('grunt-wiredep');
   // Show elapsed time after tasks run
   require('time-grunt')(grunt);
   // Load all Grunt tasks
@@ -158,7 +159,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          dest: '<%= yeoman.dist %>',
+          dest: '<%= yeoman.dist %>'
         }
       },
       server: {
@@ -181,7 +182,7 @@ module.exports = function (grunt) {
     },
     usemin: {
       options: {
-        assetsDirs: '<%= yeoman.dist %>',
+        assetsDirs: '<%= yeoman.dist %>'
       },
       html: ['<%= yeoman.dist %>/**/*.html'],
       css: ['<%= yeoman.dist %>/css/**/*.css']
@@ -327,6 +328,27 @@ module.exports = function (grunt) {
         'compass:dist',
         'copy:dist'
       ]
+    },
+
+    wiredep: {
+
+      task: {
+
+        // Point to the files that should be updated when
+        // you run `grunt wiredep`
+        src: [
+          'app/**/*.html',   // .html support...
+          'app/_scss/main.scss',  // .scss & .sass support...
+          'app/config.yml'         // and .yml & .yaml support out of the box!
+        ],
+
+        options: {
+          // See wiredep's configuration documentation for the options
+          // you may pass:
+
+          // https://github.com/taptapship/wiredep#configuration
+        }
+      }
     }
   });
 
@@ -368,6 +390,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean',
     // Jekyll cleans files from the target directory, so must run first
+    'wiredep',
     'jekyll:dist',
     'concurrent:dist',
     'useminPrepare',

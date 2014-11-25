@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "description": "Yeoman workflow for jearch",
-  "dependencies": {},
+  "dependencies": {
+    "wiredep": "^2.1.0"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.6.4",
@@ -25,6 +27,7 @@
     "grunt-jekyll": "~0.4.1",
     "grunt-svgmin": "~0.3.0",
     "grunt-usemin": "~2.0.0",
+    "grunt-wiredep": "^2.0.0",
     "jshint-stylish": "~0.1.3",
     "load-grunt-tasks": "~0.2.0",
     "time-grunt": "~0.2.8"
