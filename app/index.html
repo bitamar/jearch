@@ -5,12 +5,18 @@ title: Jekyll search example
 
 <div id="home">
 
-  <input type="text" placeholder="Search" id="jekyll-search" />
+  <div ng-controller="SearchCtrl">
 
-  <h1>Posts</h1>
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
+    <p>Selected: {{ post.selected }}</p>
+    <ui-select ng-model="post.selected" theme="select2" ng-disabled="disabled">
+      <ui-select-match placeholder="Search...">{{$select.selected.name}}</ui-select-match>
+      <ui-select-choices repeat="post in posts | postsFilter: {name: $select.search, age: $select.search}">
+        <div ng-bind-html="post.title | highlight: $select.search"></div>
+        <small>
+          [Show snippet from the body]
+        </small>
+      </ui-select-choices>
+    </ui-select>
+  </div>
+
 </div>
