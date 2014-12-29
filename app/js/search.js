@@ -17,39 +17,35 @@ app.controller('SearchCtrl', ['$scope', '$http', function($scope, $http) {
   });
 }]);
 
-/**
- * AngularJS default filter with the following expression:
- * "person in people | filter: {name: $select.search, age: $select.search}"
- * performs a AND between 'name: $select.search' and 'age: $select.search'.
- * We want to perform a OR.
- */
 app.filter('postsFilter', function() {
-  return function(items, props) {
-    var out = [];
+  return function(posts, search) {
+    var postsIndices = [];
 
-    if (angular.isArray(items)) {
-      items.forEach(function(item) {
+    var words = search.phrase.toLowerCase().split(' ');
+
+    // For each word, remove all posts that don't contain it.
+
+    words.forEach(function (word) {
+
+      var postIndex = 0;
+      posts.forEach(function (post) {
         var itemMatches = false;
 
-        var keys = Object.keys(props);
-        for (var i = 0; i < keys.length; i++) {
-          var prop = keys[i];
-          var text = props[prop].toLowerCase();
-          //if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
-          //  itemMatches = true;
-          //  break;
-          //}
-        }
+        //console.log(search.scope.searchTerms);
+        //if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+        //  itemMatches = true;
+        //  break;
+        //}
+
 
         if (itemMatches) {
-          out.push(item);
+          //out.push(post);
         }
-      });
-    } else {
-      // Let the output be the input untouched
-      out = items;
-    }
 
-    return out;
+        postIndex++;
+      });
+    });
+
+    return posts;
   }
 });

@@ -18,8 +18,8 @@ module Reading
         end
       end
 
-      #File.write('.tmp/posts.json', posts_index.to_json)
-      #File.write('.tmp/words.json', words_index.to_json)
+      File.write('.tmp/posts.json', posts_index.to_json)
+      File.write('.tmp/words.json', words_index.to_json)
       File.write('posts.json', posts_index.to_json)
       File.write('words.json', words_index.to_json)
     end
