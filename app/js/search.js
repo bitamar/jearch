@@ -18,32 +18,16 @@ app.controller('SearchCtrl', ['$scope', '$http', function($scope, $http) {
 }]);
 
 app.filter('postsFilter', function() {
-  return function(posts, search) {
-    var postsIndices = [];
+  return function(postsTitles, search) {
 
     var words = search.phrase.toLowerCase().split(' ');
 
-    // For each word, remove all posts that don't contain it.
+    var posts = _.range(postsTitles.length);
 
-    words.forEach(function (word) {
-
-      var postIndex = 0;
-      posts.forEach(function (post) {
-        var itemMatches = false;
-
-        //console.log(search.scope.searchTerms);
-        //if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
-        //  itemMatches = true;
-        //  break;
-        //}
-
-
-        if (itemMatches) {
-          //out.push(post);
-        }
-
-        postIndex++;
-      });
+    words.forEach(function(word) {
+      if (word.length > 2) {
+        posts = _.intersection(posts, search.scope.searchTerms[word]);
+      }
     });
 
     return posts;
