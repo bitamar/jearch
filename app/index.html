@@ -11,10 +11,7 @@ title: Jekyll search example
     <ui-select ng-model="post.selected" theme="select2" ng-disabled="disabled">
       <ui-select-match placeholder="Search...">{{$select.selected.name}}</ui-select-match>
       <ui-select-choices repeat="post in posts | postsFilter: {phrase: $select.search, scope: this}">
-        <div ng-bind-html="post.title | highlight: $select.search"></div>
-        <small>
-          [Show snippet from the body]
-        </small>
+        <div ng-bind-html="post[0] | highlight: $select.search"></div>
       </ui-select-choices>
     </ui-select>
   </div>

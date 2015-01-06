@@ -22,14 +22,19 @@ app.filter('postsFilter', function() {
 
     var words = search.phrase.toLowerCase().split(' ');
 
-    var posts = _.range(postsTitles.length);
+    var postIds = _.range(postsTitles.length);
 
     words.forEach(function(word) {
       if (word.length > 2) {
-        posts = _.intersection(posts, search.scope.searchTerms[word]);
+        postIds = _.intersection(postIds, search.scope.searchTerms[word]);
       }
     });
 
+    // Fetch posts according to the ids list.
+    var posts = [];
+    postIds.forEach(function(id) {
+      posts.push(postsTitles[id]);
+    });
     return posts;
   }
 });
