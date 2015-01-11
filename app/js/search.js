@@ -26,7 +26,7 @@ app.filter('postsFilter', function() {
 
     var postIds = _.range(postsTitles.length);
 
-    // Search for full word matches.
+    // Search for word matches.
     words.forEach(function(word) {
       if (word.length > 2) {
         postIds = _.intersection(postIds, search.scope.searchTerms[word]);
@@ -36,8 +36,18 @@ app.filter('postsFilter', function() {
     // Search for partial word matches when there are few results.
     if (postIds < 10) {
       words.forEach(function(word) {
-        console.log(word);
-        //search.scope.searchTerms ;
+        // TODO: Break this foreach when there are enough results.
+
+        for (var searchTerm in search.scope.searchTerms) {
+          if (postIds.length >= 10) {
+            break;
+          }
+          if (searchTerm.indexOf(word) != -1) {
+            // When the searched word is included in one of the existing words, add
+            // its post IDs.
+            postIds = _.union(postIds, search.scope.searchTerms[searchTerm]);
+          }
+        }
       });
     }
 
