@@ -19,8 +19,7 @@ angular.module('jekyllSearch')
      * }
      *
      */
-    this.get = function(baseUrl) {
-      console.log(baseUrl);
+    this.get = function() {
       return $q.all(
 
         $http.get('words.json').success(function(data) {

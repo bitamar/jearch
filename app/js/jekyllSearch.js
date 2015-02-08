@@ -5,5 +5,5 @@ var app = angular.module('jekyllSearch', ['ngSanitize', 'ui.select']).config(['$
 }]);
 
 app.controller('JekyllSearchController', ['$scope', 'FetchSearchData', function($scope, FetchSearchData) {
-  FetchSearchData.get('localhost:9000');
+  FetchSearchData.get();
 }]);
