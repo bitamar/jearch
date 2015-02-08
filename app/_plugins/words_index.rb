@@ -18,8 +18,10 @@ module Reading
         end
       end
 
-      File.write('.tmp/posts.json', posts_index.to_json)
-      File.write('.tmp/words.json', words_index.to_json)
+      #web_dir = site.config['destination'] == 'dist' ? 'dist' : '.tmp'
+      web_dir = '.tmp'
+      File.write(web_dir + '/posts.json', posts_index.to_json)
+      File.write(web_dir + '/words.json', words_index.to_json)
     end
   end
 end

@@ -20,12 +20,14 @@ angular.module('jekyllSearch')
      *
      */
     this.get = function(baseUrl) {
+      console.log(baseUrl);
       return $q.all(
+
         $http.get('words.json').success(function(data) {
-          searchTerms = data;
+          return data;
         }),
         $http.get('posts.json').success(function(data) {
-          posts = data;
+          return data;
         })
       );
     };
